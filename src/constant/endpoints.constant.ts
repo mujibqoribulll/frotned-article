@@ -3,6 +3,18 @@ const ENDPOINTS = {
         LOGIN: '/auth/login',
         REGISTER: '/auth/register'
     },
+    ARTICLE: {
+        GET_ALL: '/articles',
+        UPDATE: 'articles/:id',
+        DELETE: 'articles/:id',
+        CREATE: '/articles',
+    },
+    CATEGORIES: {
+        GET_ALL: '/categories',
+        CREATE: '/categories',
+        UPDATE: '/categories/:id',
+        DELETE: '/categories/:id',
+    }
 }
 
 export default ENDPOINTS

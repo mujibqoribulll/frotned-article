@@ -50,6 +50,8 @@ const authSlice = createSlice({
                 state.core.role = payload?.role
                 state.core.token = payload?.token
                 Cookies.set('auth', payload?.token)
+            } else {
+                state.login.loading = 'failed'
             }
         });
         builder.addCase(postLoginThunk.rejected, (state, action) => {

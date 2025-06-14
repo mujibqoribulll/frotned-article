@@ -7,7 +7,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const postLoginThunk = createAsyncThunk('auth/postLoginThunk', async (data: any, { rejectWithValue }) => {
     try {
         let response = await AUTH.postLogin(data)
-        console.log('response', response)
         return response.data
     } catch (error) {
         rejectWithValue(error)
@@ -17,7 +16,6 @@ export const postLoginThunk = createAsyncThunk('auth/postLoginThunk', async (dat
 export const postRegisterThunk = createAsyncThunk('auth/postRegisterinThunk', async (data: any, { rejectWithValue }) => {
     try {
         let response = await AUTH.postRegister(data)
-        console.log('response', response)
         return response.data
     } catch (error) {
         rejectWithValue(error)

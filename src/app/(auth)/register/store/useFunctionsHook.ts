@@ -24,7 +24,6 @@ export const useFunctionHook = () => {
     const onSubmit = async (data: IRegister) => {
         try {
             let result = await dispatch(postRegisterThunk(data))
-            console.log('result', result)
             if (postRegisterThunk.fulfilled.match(result)) {
                 route.push('/login')
             }
