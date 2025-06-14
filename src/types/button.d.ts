@@ -7,3 +7,8 @@ interface IButtonText {
     disable: boolean;
     loading: boolean;
 }
+
+interface IButtonIcon {
+    icon: React.ReactNode;
+    onPress: () => void
+}
