@@ -1,3 +1,4 @@
+
 type TypeButton = 'reset' | 'submit' | 'button'
 
 interface IButtonText {
@@ -6,9 +7,12 @@ interface IButtonText {
     type: TypeButton;
     disable?: boolean;
     loading?: boolean;
+    styleContainer: string;
+    styleText: string
 }
 
 interface IButtonIcon {
     icon: React.ReactNode;
     onPress: () => void
+    styleContainer: string
 }

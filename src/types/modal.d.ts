@@ -3,7 +3,7 @@ interface IModalFormProps {
     onCancel: () => void;
     visible: boolean;
     data?: Datatypes;
-    onSubmit: (data: Datatypes) => void
+    onSubmit: () => void
     register: any
     errors: any
     handleSubmit: any
@@ -21,4 +21,10 @@ type Modaltype = 'add-article' | 'update-article' | undefined | ''
 
 type Datatypes = {
     id: string | number
+}
+
+interface IModalAlertProps {
+    onPress: () => void;
+    onCancel: () => void;
+    visible: string | any;
 }
