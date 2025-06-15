@@ -5,7 +5,7 @@ import { FaPen } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 
 const CardArticle = (props: any) => {
-  const { data, onDeletePress } = props;
+  const { data, onDeletePress, onEditPress } = props;
   const { title, imageUrl, category, user, createdAt, id } = data;
   let theDate = new Date(createdAt);
   const [isVisible, setIsVisible] = useState(false);
@@ -44,6 +44,7 @@ const CardArticle = (props: any) => {
           <ButtonIcon
             icon={<FaPen size={25} className="text-white" />}
             styleContainer="bg-green-500 p-1 rounded-md"
+            onPress={() => onEditPress(id)}
           />
         </div>
       </div>

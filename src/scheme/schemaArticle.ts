@@ -5,6 +5,12 @@ export const schemaArticle = yup.object({
 
 export const schemaArticleForm = yup.object({
     title: yup.string().required(),
-    categories: yup.string().required(),
+    categories: yup
+        .object({
+            value: yup.mixed().required(),
+            label: yup.string().required(),
+        })
+        .required('Categories required')
+        .nullable(), // jika form awalnya kosong
     description: yup.string()
 });

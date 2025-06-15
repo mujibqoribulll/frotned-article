@@ -99,6 +99,9 @@ const Branda = (props: any) => {
                   onDeletePress={(id: string) =>
                     setIsOpenModalAlert({ id: id })
                   }
+                  onEditPress={(id: string) =>
+                    onPressModal('update-article', { id })
+                  }
                 />
               ))}
         </div>

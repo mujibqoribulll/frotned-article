@@ -7,7 +7,6 @@ const ModalForm = (props: IModalFormProps) => {
     visible,
     onCancel,
     onPress,
-    data,
     handleSubmit,
     register,
     errors,
@@ -60,16 +59,18 @@ const ModalForm = (props: IModalFormProps) => {
               <Controller
                 name="categories"
                 control={control}
-                render={({ field, ref, value }) => (
-                  <SelectArticle
-                    {...field}
-                    value={value}
-                    onChange={(val) => {
-                      field.onChange(val.value);
-                    }}
-                    inputRef={ref}
-                  />
-                )}
+                render={({ field, ref }) => {
+                  return (
+                    <SelectArticle
+                      {...field}
+                      value={field?.value}
+                      onChange={(val) => {
+                        field.onChange(val);
+                      }}
+                      inputRef={ref}
+                    />
+                  );
+                }}
                 rules={{ required: true }}
               />
 

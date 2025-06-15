@@ -6,7 +6,7 @@ import { getCategoriesThunk } from '@/app/(article)/branda/store/articleThunk';
 import { useAppDispatch } from '@/store/hooks';
 
 interface OptionType {
-  value: number;
+  value: string;
   label: string;
 }
 interface Article {

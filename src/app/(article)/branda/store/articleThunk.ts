@@ -38,4 +38,27 @@ export const deleteArticleThunk = createAsyncThunk('article/deleteArticleThunk',
         rejectWithValue(error)
     }
 })
+export const getDetailArticleThunk = createAsyncThunk('article/deleteArticleThunk', async (id: string, { rejectWithValue }) => {
+    try {
+        let response = await ARTICLE.getDetailArticle(id)
+        return response.data
+    } catch (error) {
+        rejectWithValue(error)
+    }
+})
+
+
+export const updateArticleThunk = createAsyncThunk('article/updateArticleThunk', async (payload: DataArticle, { rejectWithValue }) => {
+    try {
+        let response = await ARTICLE.updateArticle(payload)
+        return response.data
+    } catch (error) {
+        rejectWithValue(error)
+    }
+})
+
+
+
+
+
 

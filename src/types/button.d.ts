@@ -7,8 +7,8 @@ interface IButtonText {
     type: TypeButton;
     disable?: boolean;
     loading?: boolean;
-    styleContainer: string;
-    styleText: string
+    styleContainer?: string;
+    styleText?: string
 }
 
 interface IButtonIcon {

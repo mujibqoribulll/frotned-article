@@ -17,3 +17,12 @@ export const postArticle = (data: DataArticle) => {
 export const deleteArticle = (id: string) => {
     return axiosInstance.delete(ENDPOINTS.ARTICLE.DELETE.replace(':id', id))
 }
+
+export const getDetailArticle = (id: string) => {
+    return axiosInstance.get(ENDPOINTS.ARTICLE.DETAIL.replace(':id', id))
+}
+
+export const updateArticle = (payload: any) => {
+    console.log('payload', payload)
+    return axiosInstance.put(ENDPOINTS.ARTICLE.UPDATE.replace(":id", `${payload?.id}`), payload?.data)
+}

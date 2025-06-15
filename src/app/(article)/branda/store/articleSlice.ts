@@ -1,6 +1,6 @@
 import { IArticle } from "@/types/articles";
 import { createSlice } from "@reduxjs/toolkit";
-import { deleteArticleThunk, getArticleThunk, postArticleThunk } from "./articleThunk";
+import { deleteArticleThunk, getArticleThunk, postArticleThunk, updateArticleThunk } from "./articleThunk";
 
 
 
@@ -68,6 +68,15 @@ const articlesSlice = createSlice({
             state.article.loading = 'succeeded';
         });
         builder.addCase(deleteArticleThunk.rejected, state => {
+            state.article.loading = 'failed';
+        });
+        builder.addCase(updateArticleThunk.pending, state => {
+            state.article.loading = 'pending';
+        });
+        builder.addCase(updateArticleThunk.fulfilled, state => {
+            state.article.loading = 'succeeded';
+        });
+        builder.addCase(updateArticleThunk.rejected, state => {
             state.article.loading = 'failed';
         });
     }

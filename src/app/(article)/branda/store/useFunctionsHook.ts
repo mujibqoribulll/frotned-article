@@ -7,7 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { shallowEqual } from "react-redux"
-import { deleteArticleThunk, getArticleThunk, postArticleThunk } from "./articleThunk"
+import { deleteArticleThunk, getArticleThunk, getDetailArticleThunk, postArticleThunk, updateArticleThunk } from "./articleThunk"
 
 export const useFunctionsHook = () => {
 
@@ -26,6 +26,8 @@ export const useFunctionsHook = () => {
         register: registerForm,
         handleSubmit,
         reset,
+        getValues,
+        watch: watchForm,
         control,
         formState: { errors: errorForm, isValid: isValidForm, isLoading: isLoadingForm },
     } = useForm({
@@ -80,16 +82,21 @@ export const useFunctionsHook = () => {
         }));
     }
 
-
+    console.log('modal?.type', modal?.data?.id)
     const onSubmit = async (data: DataArticle) => {
+        let typeSubmit = modal?.type
+        console.log('typeSubmit', data)
         let payload = {
-            title: `${data?.title}`,
-            categoryId: `${data?.categories}`,
-            content: `${data?.description}`
-
+            data: {
+                title: `${data?.title}`,
+                categoryId: `${data?.categories?.value}`,
+                content: `${data?.description}`,
+            },
+            id: `${modal?.data?.id}`
         }
-        let result = await dispatch(postArticleThunk(payload))
-        if (postArticleThunk.fulfilled.match(result)) {
+        console.log('payload3', payload)
+        let result = typeSubmit === 'add-article' ? await dispatch(postArticleThunk(payload)) : await dispatch(updateArticleThunk(payload))
+        if (postArticleThunk.fulfilled.match(result) || updateArticleThunk.fulfilled.match(result)) {
             setModal((prevState) => ({
                 ...prevState,
                 type: undefined,
@@ -142,6 +149,24 @@ export const useFunctionsHook = () => {
     useEffect(() => {
         fetchArticles()
     }, [page]);
+
+    const fetchDetailArticle = async () => {
+        let result = await dispatch(getDetailArticleThunk(`${modal?.data?.id}`))
+        if (getDetailArticleThunk.fulfilled.match(result)) {
+            reset({
+                title: result?.payload?.title,
+                categories: { value: result?.payload?.category?.id, label: result?.payload?.category?.name },
+                description: result?.payload?.content
+            })
+        }
+    }
+
+    useEffect(() => {
+        if (modal?.data?.id && modal?.type === 'update-article') {
+            fetchDetailArticle()
+        }
+
+    }, [modal])
 
 
 

@@ -7,6 +7,7 @@ const ENDPOINTS = {
         GET_ALL: '/articles',
         UPDATE: 'articles/:id',
         DELETE: 'articles/:id',
+        DETAIL: 'articles/:id',
         CREATE: '/articles',
     },
     CATEGORIES: {
