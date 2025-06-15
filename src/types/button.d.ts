@@ -4,8 +4,8 @@ interface IButtonText {
     title: string;
     onPress?: () => void;
     type: TypeButton;
-    disable: boolean;
-    loading: boolean;
+    disable?: boolean;
+    loading?: boolean;
 }
 
 interface IButtonIcon {

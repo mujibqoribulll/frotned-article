@@ -4,6 +4,8 @@ interface DataArticle {
     title: string;
     content: string;
     categoryId: string;
+    categories?: string;
+    description?: string;
 }
 
 interface TypePagination {
@@ -18,8 +20,21 @@ interface IArticle {
         loading: LoadingTypeProps;
         message: string;
         data: any
+    };
+    pagination: TypePagination;
+    categories: {
+        loading: LoadingTypeProps;
+        message: string;
+        data: any
     }
-    pagination: TypePagination
+}
 
+interface ICardArticle {
+
+}
+
+interface IParam {
+    title: string
+    page: number
 }
 
