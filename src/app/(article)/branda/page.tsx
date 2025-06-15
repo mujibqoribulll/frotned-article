@@ -3,6 +3,7 @@ import ButtonText from '@/components/buttons/button-text';
 import CardArticle from '@/components/cards/card-article';
 import ModalForm from '@/components/modals/modal-form';
 // import SelectArticle from '@/components/select-with-pagination';
+import ModalAlert from '@/components/modals/modal-alert';
 import { BsSearch } from 'react-icons/bs';
 import { useFunctionsHook } from './store/useFunctionsHook';
 
@@ -16,6 +17,7 @@ const Branda = (props: any) => {
     modal,
     errorForm,
     control,
+    isOpenModalAlert,
     formState: { errors, isLoading, isValid },
     function: {
       register,
@@ -26,6 +28,8 @@ const Branda = (props: any) => {
       registerForm,
       reset,
       onSubmit,
+      onDeleteArticle,
+      setIsOpenModalAlert,
     },
   } = useFunctionsHook();
 
@@ -70,9 +74,33 @@ const Branda = (props: any) => {
           </div>
         </div>
         <div className=" w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {article?.data?.map?.((item, index) => (
-            <CardArticle key={index} data={item} />
-          ))}
+          {article?.loading === 'pending'
+            ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map?.((item, index) => (
+                <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out cursor-wait">
+                  <div className="relative h-44 w-full bg-gray-200 animate-pulse" />
+
+                  <div className="p-4 text-left space-y-3 animate-pulse">
+                    <div className="w-24 h-5 bg-gray-200 rounded-full" />
+                    <div className="h-6 bg-gray-300 rounded w-3/4" />
+                    <div className="h-4 bg-gray-200 rounded w-full" />
+                    <div className="h-4 bg-gray-200 rounded w-5/6" />
+
+                    <div className="flex items-center gap-4 mt-2">
+                      <div className="w-20 h-4 bg-gray-200 rounded" />
+                      <div className="w-24 h-4 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                </div>
+              ))
+            : article?.data?.map?.((item, index) => (
+                <CardArticle
+                  key={index}
+                  data={item}
+                  onDeletePress={(id: string) =>
+                    setIsOpenModalAlert({ id: id })
+                  }
+                />
+              ))}
         </div>
         <div className="flex justify-end items-center my-3 gap-x-4">
           <ButtonText
@@ -99,6 +127,11 @@ const Branda = (props: any) => {
         control={control}
         onSubmit={onSubmit}
         loading={article?.loading === 'pending'}
+      />
+      <ModalAlert
+        visible={isOpenModalAlert}
+        onCancel={() => setIsOpenModalAlert({ id: '' })}
+        onPress={onDeleteArticle}
       />
     </section>
   );

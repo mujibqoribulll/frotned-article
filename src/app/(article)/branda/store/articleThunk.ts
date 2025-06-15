@@ -29,3 +29,13 @@ export const postArticleThunk = createAsyncThunk('article/postArticleThunk', asy
         rejectWithValue(error)
     }
 })
+
+export const deleteArticleThunk = createAsyncThunk('article/deleteArticleThunk', async (id: string, { rejectWithValue }) => {
+    try {
+        let response = await ARTICLE.deleteArticle(id)
+        return response.data
+    } catch (error) {
+        rejectWithValue(error)
+    }
+})
+

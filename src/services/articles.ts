@@ -13,3 +13,7 @@ export const getCategory = (params: any) => {
 export const postArticle = (data: DataArticle) => {
     return axiosInstance.post(ENDPOINTS.ARTICLE.CREATE, data)
 }
+
+export const deleteArticle = (id: string) => {
+    return axiosInstance.delete(ENDPOINTS.ARTICLE.DELETE.replace(':id', id))
+}

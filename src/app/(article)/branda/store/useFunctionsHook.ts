@@ -7,13 +7,12 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { shallowEqual } from "react-redux"
-import { getArticleThunk, postArticleThunk } from "./articleThunk"
+import { deleteArticleThunk, getArticleThunk, postArticleThunk } from "./articleThunk"
 
 export const useFunctionsHook = () => {
 
     const { article, pagination } = useAppSelector(state => state.article, shallowEqual)
-    const core = useAppSelector(state => state.auth.core, shallowEqual)
-    console.log('core', core)
+
     const {
         register,
         watch,
@@ -37,6 +36,9 @@ export const useFunctionsHook = () => {
     const dispatch = useAppDispatch()
     const route = useRouter();
     const searchParams = useSearchParams();
+    const [isOpenModalAlert, setIsOpenModalAlert] = useState({
+        id: ''
+    })
 
     const watchKeyword = watch('keyword');
     const page = Number(searchParams.get('page')) || 1;
@@ -98,6 +100,17 @@ export const useFunctionsHook = () => {
 
     }
 
+    const onDeleteArticle = async () => {
+        if (isOpenModalAlert?.id) {
+            let result = await dispatch(deleteArticleThunk(isOpenModalAlert?.id))
+            if (deleteArticleThunk.fulfilled.match(result)) {
+                fetchArticles()
+                setIsOpenModalAlert({ id: '' })
+            }
+        }
+
+    }
+
     useEffect(() => {
         const delay = setTimeout(() => {
 
@@ -118,12 +131,16 @@ export const useFunctionsHook = () => {
         return () => clearTimeout(delay);
     }, [watchKeyword]);
 
-    useEffect(() => {
+    const fetchArticles = () => {
         const params: IParam = {
-            title: `{watchKeyword}`,
+            title: `${watchKeyword}`,
             page,
         };
         dispatch(getArticleThunk(params));
+    }
+
+    useEffect(() => {
+        fetchArticles()
     }, [page]);
 
 
@@ -131,6 +148,6 @@ export const useFunctionsHook = () => {
 
 
     return {
-        article, modal, pagination, control, isPrevDisabled, isNextDisabled, formState: { errors, isValid, isLoading }, errorForm, function: { register, handleNext, handlePrev, toggleSetModal, registerForm, handleSubmit, reset, onSubmit }
+        article, modal, pagination, control, isOpenModalAlert, isPrevDisabled, isNextDisabled, formState: { errors, isValid, isLoading }, errorForm, function: { register, handleNext, handlePrev, toggleSetModal, registerForm, handleSubmit, reset, onSubmit, onDeleteArticle, setIsOpenModalAlert }
     }
 }

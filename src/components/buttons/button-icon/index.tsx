@@ -1,7 +1,7 @@
 const ButtonIcon = (props: IButtonIcon) => {
-  const { icon, onPress } = props;
+  const { icon, onPress, styleContainer } = props;
   return (
-    <button className="cursor-pointer " onClick={onPress}>
+    <button className={`${styleContainer} cursor-pointer `} onClick={onPress}>
       {icon}
     </button>
   );
