@@ -18,6 +18,7 @@ const Branda = (props: any) => {
     errorForm,
     control,
     isOpenModalAlert,
+    core,
     formState: { errors, isLoading, isValid },
     function: {
       register,
@@ -65,13 +66,15 @@ const Branda = (props: any) => {
               </p>
             )}
           </div>
-          <div className="w-60">
-            <ButtonText
-              title="Add Article"
-              type="button"
-              onPress={() => onPressModal('add-product', { id: '' })}
-            />
-          </div>
+          {core?.role === 'Admin' && (
+            <div className="w-60">
+              <ButtonText
+                title="Add Article"
+                type="button"
+                onPress={() => onPressModal('add-product', { id: '' })}
+              />
+            </div>
+          )}
         </div>
         <div className=" w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
           {article?.loading === 'pending'
@@ -96,6 +99,7 @@ const Branda = (props: any) => {
                 <CardArticle
                   key={index}
                   data={item}
+                  core={core}
                   onDeletePress={(id: string) =>
                     setIsOpenModalAlert({ id: id })
                   }

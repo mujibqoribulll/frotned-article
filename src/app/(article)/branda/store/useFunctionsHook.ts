@@ -12,6 +12,7 @@ import { deleteArticleThunk, getArticleThunk, getDetailArticleThunk, postArticle
 export const useFunctionsHook = () => {
 
     const { article, pagination } = useAppSelector(state => state.article, shallowEqual)
+    const { core } = useAppSelector(state => state.auth)
 
     const {
         register,
@@ -173,6 +174,6 @@ export const useFunctionsHook = () => {
 
 
     return {
-        article, modal, pagination, control, isOpenModalAlert, isPrevDisabled, isNextDisabled, formState: { errors, isValid, isLoading }, errorForm, function: { register, handleNext, handlePrev, toggleSetModal, registerForm, handleSubmit, reset, onSubmit, onDeleteArticle, setIsOpenModalAlert }
+        article, modal, core, pagination, control, isOpenModalAlert, isPrevDisabled, isNextDisabled, formState: { errors, isValid, isLoading }, errorForm, function: { register, handleNext, handlePrev, toggleSetModal, registerForm, handleSubmit, reset, onSubmit, onDeleteArticle, setIsOpenModalAlert }
     }
 }

@@ -5,7 +5,7 @@ import { FaPen } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 
 const CardArticle = (props: any) => {
-  const { data, onDeletePress, onEditPress } = props;
+  const { data, onDeletePress, onEditPress, core } = props;
   const { title, imageUrl, category, user, createdAt, id } = data;
   let theDate = new Date(createdAt);
   const [isVisible, setIsVisible] = useState(false);
@@ -30,23 +30,26 @@ const CardArticle = (props: any) => {
             fill
             className="object-cover object-top "
           />
-        )}{' '}
-        <div
-          className={`absolute ${
-            isVisible ? 'flex' : 'hidden'
-          } top-0 bg-gray-600/40 h-full w-full justify-center items-center gap-x-3`}
-        >
-          <ButtonIcon
-            icon={<MdDeleteForever size={25} className="text-white" />}
-            styleContainer="bg-red-500 p-1 rounded-md"
-            onPress={() => onDeletePress(id)}
-          />
-          <ButtonIcon
-            icon={<FaPen size={25} className="text-white" />}
-            styleContainer="bg-green-500 p-1 rounded-md"
-            onPress={() => onEditPress(id)}
-          />
-        </div>
+        )}
+
+        {core?.role === 'Admin' && (
+          <div
+            className={`absolute ${
+              isVisible ? 'flex' : 'hidden'
+            } top-0 bg-gray-600/40 h-full w-full justify-center items-center gap-x-3`}
+          >
+            <ButtonIcon
+              icon={<MdDeleteForever size={25} className="text-white" />}
+              styleContainer="bg-red-500 p-1 rounded-md"
+              onPress={() => onDeletePress(id)}
+            />
+            <ButtonIcon
+              icon={<FaPen size={25} className="text-white" />}
+              styleContainer="bg-green-500 p-1 rounded-md"
+              onPress={() => onEditPress(id)}
+            />
+          </div>
+        )}
       </div>
 
       <div className="p-4 text-left">
