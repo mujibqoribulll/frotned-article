@@ -61,7 +61,7 @@ const Login = () => {
             <ButtonText
               title="Sign in"
               type="submit"
-              disable={isValid}
+              disable={!isValid}
               loading={stateLogin?.loading === 'pending'}
             />
           </form>

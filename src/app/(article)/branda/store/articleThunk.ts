@@ -1,0 +1,31 @@
+import { ARTICLE } from "@/services";
+import { DataArticle, IParam } from "@/types/articles";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+
+export const getArticleThunk = createAsyncThunk('article/getArticleThunk', async (params: IParam, { rejectWithValue }) => {
+    try {
+        let response = await ARTICLE.getArticle(params)
+        return response.data
+    } catch (error) {
+        rejectWithValue(error)
+    }
+})
+
+
+export const getCategoriesThunk = createAsyncThunk('categories/getCategoriesThunk', async (params: any, { rejectWithValue }) => {
+    try {
+        let response = await ARTICLE.getCategory(params)
+        return response.data
+    } catch (error) {
+        rejectWithValue(error)
+    }
+})
+
+export const postArticleThunk = createAsyncThunk('article/postArticleThunk', async (data: DataArticle, { rejectWithValue }) => {
+    try {
+        let response = await ARTICLE.postArticle(data)
+        return response.data
+    } catch (error) {
+        rejectWithValue(error)
+    }
+})

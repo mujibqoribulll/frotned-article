@@ -1,13 +1,13 @@
 const ButtonText = (props: IButtonText) => {
-  const { title, onPress, type, disable, loading } = props;
+  const { title, onPress, type, disable = false, loading } = props;
   return (
     <button
       className={`bg-gray-600 w-full ${
-        disable ? 'cursor-pointer' : ''
+        !disable ? 'cursor-pointer' : ''
       } p-2 rounded-md text-white font-semibold flex items-center justify-center gap-x-3`}
       onClick={onPress}
       type={type}
-      disabled={!disable}
+      disabled={disable}
     >
       {title}
       {loading && (

@@ -37,7 +37,7 @@ export default function RootLayout({
         showMobileNavbar={showMobileNavbar}
       />
       {showMobileNavbar && <MobileNav />}
-      <div>{children}</div>
+      <div className="mx-10">{children}</div>
     </div>
   );
 }

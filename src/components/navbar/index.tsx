@@ -52,12 +52,11 @@ const Navbar = (props: INavbar) => {
         <div>
           <ul className="md:flex justify-between items-center gap-x-5 text-md font-semibold hidden">
             {OPTIONS_NAVBAR.map((nav, index) => (
-              <Link href={nav?.path}>
+              <Link href={nav?.path} key={index}>
                 <li
                   className={`flex items-center gap-x-1 ${
                     nav.path === pathname ? 'text-purple-500' : ''
                   }`}
-                  key={index}
                 >
                   {nav?.icon}
                   {nav?.title}

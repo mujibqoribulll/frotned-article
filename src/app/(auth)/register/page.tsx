@@ -137,7 +137,7 @@ export const Register = () => {
             <ButtonText
               title="Sign up"
               type="submit"
-              disable={isValid && getValues('check')}
+              disable={!isValid && getValues('check')}
               loading={stateRegister?.loading === 'pending'}
             />
           </form>
