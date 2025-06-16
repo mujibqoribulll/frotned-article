@@ -47,8 +47,10 @@ async function getArticleCategory(id: string): Promise<Article | null> {
   }
 }
 
-const DetailArticle = async ({ params }: { params: { id: string } }) => {
-  const article = await getArticle(params.id);
+const DetailArticle = async (props: { params: Promise<{ id: string }> }) => {
+  const { id } = await props.params;
+
+  const article = await getArticle(id);
 
   if (!article) return notFound();
 
