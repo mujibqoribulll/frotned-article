@@ -1,7 +1,7 @@
 
 import { schemaArticle, schemaArticleForm } from "@/scheme/schemaArticle"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
-import { DataArticle, IParam } from "@/types/articles"
+import { IParam } from "@/types/articles"
 import { yupResolver } from "@hookform/resolvers/yup"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -83,7 +83,7 @@ export const useFunctionsHook = () => {
         }));
     }
 
-    const onSubmit = async (data: DataArticle) => {
+    const onSubmit = async (data: any) => {
         let typeSubmit = modal?.type
         let payload = {
             data: {

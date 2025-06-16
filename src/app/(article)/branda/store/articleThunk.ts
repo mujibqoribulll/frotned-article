@@ -21,7 +21,7 @@ export const getCategoriesThunk = createAsyncThunk('categories/getCategoriesThun
     }
 })
 
-export const postArticleThunk = createAsyncThunk('article/postArticleThunk', async (data: DataArticle, { rejectWithValue }) => {
+export const postArticleThunk = createAsyncThunk('article/postArticleThunk', async (data: any, { rejectWithValue }) => {
     try {
         let response = await ARTICLE.postArticle(data)
         return response.data
