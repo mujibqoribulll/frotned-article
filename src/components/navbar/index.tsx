@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaCircleInfo } from 'react-icons/fa6';
 import { IoMdLogOut } from 'react-icons/io';
 import { IoHomeSharp } from 'react-icons/io5';
-import { MdContactPage } from 'react-icons/md';
 import { RxCross2, RxHamburgerMenu } from 'react-icons/rx';
 import ButtonIcon from '../buttons/button-icon';
 
@@ -17,20 +15,20 @@ const Navbar = (props: INavbar) => {
       path: '/branda',
       icon: <IoHomeSharp size={17} />,
     },
-    {
-      title: 'About Us',
-      path: '/#',
-      icon: <FaCircleInfo size={17} />,
-    },
-    {
-      title: 'Contact Us',
-      path: '/#',
-      icon: <MdContactPage size={17} />,
-    },
+    // {
+    //   title: 'About Us',
+    //   path: '/#',
+    //   icon: <FaCircleInfo size={17} />,
+    // },
+    // {
+    //   title: 'Contact Us',
+    //   path: '/#',
+    //   icon: <MdContactPage size={17} />,
+    // },
   ];
 
   return (
-    <nav className="p-5 shadow-md sticky top-0">
+    <nav className="p-5 shadow-md sticky top-0 bg-white z-10">
       <div className="flex justify-between items-center">
         <div>
           <h1 className="text-purple-500 text-3xl font-semibold hidden md:inline">

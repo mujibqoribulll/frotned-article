@@ -104,6 +104,7 @@ const ModalForm = (props: IModalFormProps) => {
                 title="Submit"
                 onPress={onPress}
                 loading={loading}
+                disable={loading}
               />
             </div>
           </form>

@@ -14,5 +14,5 @@ interface IButtonText {
 interface IButtonIcon {
     icon: React.ReactNode;
     onPress: () => void
-    styleContainer: string
+    styleContainer?: string
 }

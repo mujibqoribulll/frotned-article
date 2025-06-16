@@ -4,11 +4,12 @@ const ENDPOINTS = {
         REGISTER: '/auth/register'
     },
     ARTICLE: {
-        GET_ALL: '/articles',
+        GET_ALL: 'articles',
         UPDATE: 'articles/:id',
         DELETE: 'articles/:id',
         DETAIL: 'articles/:id',
-        CREATE: '/articles',
+        DETAIL_SSR: 'articles',
+        CREATE: 'articles',
     },
     CATEGORIES: {
         GET_ALL: '/categories',

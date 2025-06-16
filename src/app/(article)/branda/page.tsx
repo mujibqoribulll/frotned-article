@@ -4,6 +4,7 @@ import CardArticle from '@/components/cards/card-article';
 import ModalForm from '@/components/modals/modal-form';
 // import SelectArticle from '@/components/select-with-pagination';
 import ModalAlert from '@/components/modals/modal-alert';
+import Image from 'next/image';
 import { BsSearch } from 'react-icons/bs';
 import { useFunctionsHook } from './store/useFunctionsHook';
 
@@ -41,8 +42,13 @@ const Branda = (props: any) => {
   return (
     <section className="container mx-auto">
       <div className=" flex flex-col justify-between items-center gap-y-5 my-8">
-        <div className="h-60 bg-amber-700 w-full">
-          <h1>space</h1>
+        <div className="relative h-60 bg-amber-700 w-full rounded-lg overflow-hidden">
+          <Image
+            src="/images/banner.jpg"
+            alt="banner-image"
+            fill
+            className="object-cover object-center"
+          />
         </div>
         <div className="flex items-center gap-x-5 w-full">
           <div className="w-full">
@@ -71,7 +77,7 @@ const Branda = (props: any) => {
               <ButtonText
                 title="Add Article"
                 type="button"
-                onPress={() => onPressModal('add-product', { id: '' })}
+                onPress={() => onPressModal('add-article', { id: '' })}
               />
             </div>
           )}
@@ -79,7 +85,10 @@ const Branda = (props: any) => {
         <div className=" w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
           {article?.loading === 'pending'
             ? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map?.((item, index) => (
-                <div className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out cursor-wait">
+                <div
+                  className="relative bg-white rounded-xl overflow-hidden shadow-lg transition-all duration-300 ease-in-out cursor-wait"
+                  key={index}
+                >
                   <div className="relative h-44 w-full bg-gray-200 animate-pulse" />
 
                   <div className="p-4 text-left space-y-3 animate-pulse">
@@ -95,7 +104,7 @@ const Branda = (props: any) => {
                   </div>
                 </div>
               ))
-            : article?.data?.map?.((item, index) => (
+            : article?.data?.map?.((item: any, index: number) => (
                 <CardArticle
                   key={index}
                   data={item}

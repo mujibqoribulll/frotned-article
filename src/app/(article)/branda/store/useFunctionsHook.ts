@@ -83,10 +83,8 @@ export const useFunctionsHook = () => {
         }));
     }
 
-    console.log('modal?.type', modal?.data?.id)
     const onSubmit = async (data: DataArticle) => {
         let typeSubmit = modal?.type
-        console.log('typeSubmit', data)
         let payload = {
             data: {
                 title: `${data?.title}`,
@@ -95,15 +93,20 @@ export const useFunctionsHook = () => {
             },
             id: `${modal?.data?.id}`
         }
-        console.log('payload3', payload)
         let result = typeSubmit === 'add-article' ? await dispatch(postArticleThunk(payload)) : await dispatch(updateArticleThunk(payload))
         if (postArticleThunk.fulfilled.match(result) || updateArticleThunk.fulfilled.match(result)) {
+            fetchArticles()
             setModal((prevState) => ({
                 ...prevState,
                 type: undefined,
                 visible: !prevState.visible,
                 data: { id: '' }
             }));
+            reset({
+                categories: { value: '', label: '' },
+                description: '',
+                title: ''
+            })
         }
 
     }
