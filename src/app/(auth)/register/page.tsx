@@ -8,7 +8,7 @@ import { Controller } from 'react-hook-form';
 import Select from 'react-select';
 import { useFunctionHook } from './store/useFunctionsHook';
 
-export const Register = () => {
+const Register = () => {
   const {
     control,
     stateRegister,
