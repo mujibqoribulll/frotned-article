@@ -15,7 +15,7 @@ interface Article {
   imageUrl: string;
 }
 
-async function getArticle(id: string): Promise<Article | null> {
+async function getArticle(id: any) {
   try {
     const res = await fetch(
       `${CONFIGS?.BASE_URL}/${ENDPOINTS.ARTICLE.DETAIL_SSR}/${id}`,
@@ -31,7 +31,7 @@ async function getArticle(id: string): Promise<Article | null> {
   }
 }
 
-async function getArticleCategory(id: string): Promise<Article | null> {
+async function getArticleCategory(id: any) {
   try {
     const res = await fetch(
       `${CONFIGS?.BASE_URL}/${ENDPOINTS.ARTICLE.GET_ALL}?category=${id}`,
@@ -47,7 +47,7 @@ async function getArticleCategory(id: string): Promise<Article | null> {
   }
 }
 
-const DetailArticle = async (props: { params: Promise<{ id: string }> }) => {
+const DetailArticle = async (props: { params: any }) => {
   const { id } = await props.params;
 
   const article = await getArticle(id);
