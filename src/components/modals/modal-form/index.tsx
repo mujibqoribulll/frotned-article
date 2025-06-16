@@ -13,6 +13,7 @@ const ModalForm = (props: IModalFormProps) => {
     onSubmit,
     control,
     loading,
+    modalType,
   } = props;
 
   if (!visible) {
@@ -32,7 +33,9 @@ const ModalForm = (props: IModalFormProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-4">
-          <h2 className="text-base font-sans font-semibold">Add Article</h2>
+          <h2 className="text-base font-sans font-semibold">
+            {modalType === 'add-article' ? 'Add Article' : 'Edit Article'}{' '}
+          </h2>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-y-3 mt-3"

@@ -8,6 +8,7 @@ interface IModalFormProps {
     handleSubmit: any
     control: any
     loading: boolean
+    modalType: string
 }
 
 interface IModalDataProps {

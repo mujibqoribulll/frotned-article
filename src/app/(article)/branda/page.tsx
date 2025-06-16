@@ -143,6 +143,7 @@ const Branda = (props: any) => {
         control={control}
         onSubmit={onSubmit}
         loading={article?.loading === 'pending'}
+        modalType={`${modal?.type}`}
       />
       <ModalAlert
         visible={isOpenModalAlert}
