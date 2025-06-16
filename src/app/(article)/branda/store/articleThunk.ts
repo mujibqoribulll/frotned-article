@@ -1,5 +1,5 @@
 import { ARTICLE } from "@/services";
-import { DataArticle, IParam } from "@/types/articles";
+import { IParam } from "@/types/articles";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getArticleThunk = createAsyncThunk('article/getArticleThunk', async (params: IParam, { rejectWithValue }) => {
@@ -48,7 +48,7 @@ export const getDetailArticleThunk = createAsyncThunk('article/deleteArticleThun
 })
 
 
-export const updateArticleThunk = createAsyncThunk('article/updateArticleThunk', async (payload: DataArticle, { rejectWithValue }) => {
+export const updateArticleThunk = createAsyncThunk('article/updateArticleThunk', async (payload: any, { rejectWithValue }) => {
     try {
         let response = await ARTICLE.updateArticle(payload)
         return response.data

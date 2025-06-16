@@ -1,12 +1,5 @@
 import { LoadingTypeProps } from "./auth";
 
-interface DataArticle {
-    title?: string;
-    content?: string;
-    categoryId?: string;
-    categories?: string;
-    description?: string;
-}
 
 interface TypePagination {
     limit: number;

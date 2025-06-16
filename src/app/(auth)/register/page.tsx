@@ -5,8 +5,13 @@ import { OPTIONS_TYPE_USER } from '@/constant/auth.constant';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Controller } from 'react-hook-form';
-import Select from 'react-select';
+import Select, { StylesConfig } from 'react-select';
 import { useFunctionHook } from './store/useFunctionsHook';
+
+type MyOption = {
+  label: string;
+  value: string;
+};
 
 const Register = () => {
   const {
@@ -16,7 +21,9 @@ const Register = () => {
     function: { register, handleSubmit, onSubmit, getValues },
   } = useFunctionHook();
 
-  const customStyles = {
+  type IsMulti = false;
+
+  const customStyles: StylesConfig<MyOption, IsMulti> = {
     control: (base, state) => ({
       ...base,
       backgroundColor: 'transparent',

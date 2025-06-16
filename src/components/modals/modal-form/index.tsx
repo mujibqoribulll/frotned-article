@@ -59,15 +59,15 @@ const ModalForm = (props: IModalFormProps) => {
               <Controller
                 name="categories"
                 control={control}
-                render={({ field, ref }) => {
+                render={({ field }) => {
                   return (
                     <SelectArticle
                       {...field}
                       value={field?.value}
-                      onChange={(val) => {
+                      onChange={(val: any) => {
                         field.onChange(val);
                       }}
-                      inputRef={ref}
+                      // inputRef={ref}
                     />
                   );
                 }}

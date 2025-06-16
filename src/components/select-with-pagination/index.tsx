@@ -14,14 +14,19 @@ interface Article {
   title: string;
 }
 
+type MyOption = { label: string; value: string };
+type Group = never;
+type Additional = { page: number };
+
 const SelectArticle = ({ value, onChange, ...rest }: any) => {
   const dispatch = useAppDispatch();
 
-  const loadOptions: LoadOptions<OptionType, { page: number }> = async (
+  const loadOptions: LoadOptions<MyOption, Group, Additional> = async (
     searchQuery,
     loadedOptions,
-    { page },
+    additional,
   ) => {
+    const page = additional?.page ?? 1;
     const limit = 10;
 
     try {
@@ -30,8 +35,8 @@ const SelectArticle = ({ value, onChange, ...rest }: any) => {
       ).unwrap();
 
       const options = data.data
-        .filter((item) => item?.id && item?.name)
-        .map((item) => ({
+        .filter((item: any) => item?.id && item?.name)
+        .map((item: any) => ({
           value: item.id,
           label: item.name,
         }));
@@ -57,7 +62,8 @@ const SelectArticle = ({ value, onChange, ...rest }: any) => {
       value={value}
       onChange={onChange}
       loadOptions={loadOptions}
-      additional={{ page: 1 }}
+      defaultAdditional={{ page: 1 }}
+      // additional={{ page: 1 }}
       isClearable
       debounceTimeout={400}
       placeholder="Search Categories"

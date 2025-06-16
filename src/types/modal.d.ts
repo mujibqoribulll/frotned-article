@@ -1,8 +1,8 @@
 interface IModalFormProps {
-    onPress: () => void;
+    onPress?: () => void;
     onCancel: () => void;
     visible: boolean;
-    onSubmit: () => void
+    onSubmit: any
     register: any
     errors: any
     handleSubmit: any
